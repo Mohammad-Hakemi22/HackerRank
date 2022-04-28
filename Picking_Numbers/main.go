@@ -7,12 +7,12 @@ import (
 	"golang.org/x/exp/constraints"
 )
 
-type realNumbers interface {
+type RealNumbers interface {
 	constraints.Integer | constraints.Float
 }
 
 
-func maximum[T realNumbers](numbers []T) (T, T) {
+func Maximum[T RealNumbers](numbers []T) (T, T) {
 	var max T = 0
 	var max_ind T = 0
 
@@ -26,7 +26,7 @@ func maximum[T realNumbers](numbers []T) (T, T) {
 }
 
 
-func pickingNumbers(a []int32) int32 {
+func PickingNumbers(a []int32) int32 {
 	Frequency_data := make([]int32, 100)
 	max_Frequency := make([]int32, 100)
 	for i := 0; i < 100; i++ {
@@ -39,11 +39,11 @@ func pickingNumbers(a []int32) int32 {
 	for i := 0; i < len(Frequency_data)-1; i++ {
 		max_Frequency[i] = Frequency_data[i] + Frequency_data[i+1]
 	}
-	max, _ := maximum(max_Frequency)
+	max, _ := Maximum(max_Frequency)
 	return max
 }
 
 func main() {
 	arr := []int32{4, 6, 5, 3, 3, 1}
-	fmt.Println(pickingNumbers(arr))
+	fmt.Println(PickingNumbers(arr))
 }
